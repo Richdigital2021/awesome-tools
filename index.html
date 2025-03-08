@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome Tools Suite</title>
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #00ff88;
+            --accent: #ffffff;
+            --text: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--primary);
+            color: var(--text);
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--secondary);
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 100px auto 0;
+            padding: 2rem;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .tool-card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 150px);
+            padding: 1rem;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .ad {
+            background: rgba(40, 40, 40, 0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+            border: 1px solid var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--secondary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Tool Specific Styles */
+        .tool-title {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        button {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+
+        input, select, textarea {
+            background: rgba(50, 50, 50, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            padding: 0.8rem;
+            border-radius: 5px;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <h1 style="color: var(--secondary);">ToolMaster</h1>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#tools">Tools</a>
+                <a href="#blog">Blog</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Tools Grid -->
+        <main class="tools-grid">
+            <!-- Paste all previous tool HTML here -->
+            <!-- Wrap each tool in a div with class="tool-card" -->
+            <!-- Example: -->
+            <div class="tool-card">
+                <h2 class="tool-title">Password Generator</h2>
+                <!-- Password generator HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Secured Password Generator</title>
+                    <link rel="stylesheet" href="../style.css">
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>Secure Password Generator</h1>
+                        <div class="controls">
+                            <label>Length: <input type="number" id="length" value="12" min="8" max="64"></label>
+                            <label><input type="checkbox" id="uppercase" checked> Uppercase</label>
+                            <label><input type="checkbox" id="numbers" checked> Numbers</label>
+                            <label><input type="checkbox" id="symbols"> Symbols</label>
+                            <button onclick="generatePassword()">Generate</button>
+                        </div>
+                        <div class="result" id="passwordResult"></div>
+                        <div class="strength-meter" id="strengthMeter"></div>
+                    </div>
+                
+                    <script>
+                        function generatePassword() {
+                            const chars = {
+                                lowercase: 'abcdefghijklmnopqrstuvwxyz',
+                                uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                                numbers: '0123456789',
+                                symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+                            };
+                
+                            let characterSet = chars.lowercase;
+                            if(document.getElementById('uppercase').checked) characterSet += chars.uppercase;
+                            if(document.getElementById('numbers').checked) characterSet += chars.numbers;
+                            if(document.getElementById('symbols').checked) characterSet += chars.symbols;
+                
+                            const length = document.getElementById('length').value;
+                            let password = '';
+                            
+                            for(let i = 0; i < length; i++) {
+                                password += characterSet.charAt(
+                                    Math.floor(Math.random() * characterSet.length)
+                                );
+                            }
+                
+                            document.getElementById('passwordResult').textContent = password;
+                            analyzeStrength(password);
+                        }
+                
+                        function analyzeStrength(pwd) {
+                            // Add strength analysis logic here
+                        }
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Ultimate Unit Converter</h2>
+                <!-- unit converter HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Ultimate Unit Converter</title>
+                    <link rel="stylesheet" href="../style.css">
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>Advanced Unit Converter</h1>
+                        <div class="converter">
+                            <input type="number" id="inputValue" placeholder="Enter value">
+                            <select id="unitType">
+                                <option value="length">Length</option>
+                                <option value="weight">Weight</option>
+                                <option value="temperature">Temperature</option>
+                                <option value="area">Area</option>
+                            </select>
+                            <select id="fromUnit"></select>
+                            <select id="toUnit"></select>
+                            <button onclick="convertUnits()">Convert</button>
+                            <div id="result"></div>
+                        </div>
+                    </div>
+                
+                    <script>
+                        const units = {
+                            length: {
+                                m: 1,
+                                cm: 0.01,
+                                mm: 0.001,
+                                km: 1000,
+                                inch: 0.0254,
+                                foot: 0.3048,
+                                yard: 0.9144,
+                                mile: 1609.34
+                            },
+                            weight: {
+                                kg: 1,
+                                g: 0.001,
+                                mg: 0.000001,
+                                lb: 0.453592,
+                                oz: 0.0283495
+                            },
+                            temperature: {
+                                celsius: 'celsius',
+                                fahrenheit: 'fahrenheit',
+                                kelvin: 'kelvin'
+                            }
+                        };
+                
+                        function populateUnits() {
+                            const unitType = document.getElementById('unitType').value;
+                            const fromUnit = document.getElementById('fromUnit');
+                            const toUnit = document.getElementById('toUnit');
+                            
+                            fromUnit.innerHTML = '';
+                            toUnit.innerHTML = '';
+                            
+                            Object.keys(units[unitType]).forEach(unit => {
+                                fromUnit.innerHTML += `<option value="${unit}">${unit}</option>`;
+                                toUnit.innerHTML += `<option value="${unit}">${unit}</option>`;
+                            });
+                        }
+                
+                        function convertUnits() {
+                            const inputValue = parseFloat(document.getElementById('inputValue').value);
+                            const unitType = document.getElementById('unitType').value;
+                            const fromUnit = document.getElementById('fromUnit').value;
+                            const toUnit = document.getElementById('toUnit').value;
+                            
+                            if(unitType === 'temperature') {
+                                const result = convertTemperature(inputValue, fromUnit, toUnit);
+                                document.getElementById('result').innerHTML = 
+                                    `${inputValue} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+                            } else {
+                                const baseValue = inputValue * units[unitType][fromUnit];
+                                const result = baseValue / units[unitType][toUnit];
+                                document.getElementById('result').innerHTML = 
+                                    `${inputValue} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+                            }
+                        }
+                
+                        function convertTemperature(value, from, to) {
+                            if(from === to) return value;
+                            if(from === 'celsius') {
+                                if(to === 'fahrenheit') return (value * 9/5) + 32;
+                                if(to === 'kelvin') return value + 273.15;
+                            }
+                            if(from === 'fahrenheit') {
+                                if(to === 'celsius') return (value - 32) * 5/9;
+                                if(to === 'kelvin') return (value - 32) * 5/9 + 273.15;
+                            }
+                            if(from === 'kelvin') {
+                                if(to === 'celsius') return value - 273.15;
+                                if(to === 'fahrenheit') return (value - 273.15) * 9/5 + 32;
+                            }
+                            return value;
+                        }
+                
+                        document.getElementById('unitType').addEventListener('change', populateUnits);
+                        populateUnits();
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Ultimate File Converter</h2>
+                <!-- File Format Converter HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>File Format Converter</title>
+                    <link rel="stylesheet" href="../style.css">
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>File Format Converter</h1>
+                        <div class="converter-section">
+                            <h2>Image Converter</h2>
+                            <input type="file" id="imageInput" accept="image/*">
+                            <select id="imageFormat">
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WEBP</option>
+                            </select>
+                            <button onclick="convertImage()">Convert Image</button>
+                        </div>
+                        
+                        <div class="converter-section">
+                            <h2>Text File Converter</h2>
+                            <input type="file" id="textInput" accept=".txt,.html,.md">
+                            <select id="textFormat">
+                                <option value="txt">Plain Text</option>
+                                <option value="html">HTML</option>
+                                <option value="md">Markdown</option>
+                            </select>
+                            <button onclick="convertText()">Convert Text</button>
+                        </div>
+                    </div>
+                
+                    <script>
+                        function convertImage() {
+                            const input = document.getElementById('imageInput');
+                            const format = document.getElementById('imageFormat').value;
+                            
+                            if(input.files[0]) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const img = new Image();
+                                    img.onload = function() {
+                                        const canvas = document.createElement('canvas');
+                                        canvas.width = img.width;
+                                        canvas.height = img.height;
+                                        const ctx = canvas.getContext('2d');
+                                        ctx.drawImage(img, 0, 0);
+                                        
+                                        canvas.toBlob(blob => {
+                                            const url = URL.createObjectURL(blob);
+                                            const a = document.createElement('a');
+                                            a.href = url;
+                                            a.download = `converted.${format}`;
+                                            a.click();
+                                        }, `image/${format}`, 0.9);
+                                    };
+                                    img.src = e.target.result;
+                                };
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                
+                        function convertText() {
+                            const input = document.getElementById('textInput');
+                            const format = document.getElementById('textFormat').value;
+                            
+                            if(input.files[0]) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    let content = e.target.result;
+                                    if(format === 'html') {
+                                        content = `<html><body><pre>${content}</pre></body></html>`;
+                                    } else if(format === 'md') {
+                                        content = `# Converted File\n\n${content}`;
+                                    }
+                                    
+                                    const blob = new Blob([content], {type: 'text/plain'});
+                                    const url = URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.href = url;
+                                    a.download = `converted.${format}`;
+                                    a.click();
+                                };
+                                reader.readAsText(input.files[0]);
+                            }
+                        }
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Interacter Calculator</h2>
+                <!-- Password generator HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Calculator Suite</title>
+                    <link rel="stylesheet" href="../style.css">
+                    <style>
+                        .calculator-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+                        .calculator-tab { padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+                        .calculator-tab.active { background: var(--secondary-color); color: white; }
+                        .calculator-content { display: none; }
+                        .calculator-content.active { display: block; }
+                    </style>
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>Interactive Calculator Suite</h1>
+                        <div class="calculator-tabs">
+                            <div class="calculator-tab active" onclick="showCalculator('scientific')">Scientific</div>
+                            <div class="calculator-tab" onclick="showCalculator('bmi')">BMI</div>
+                            <div class="calculator-tab" onclick="showCalculator('mortgage')">Mortgage</div>
+                        </div>
+                
+                        <div id="scientific" class="calculator-content active">
+                            <!-- Scientific Calculator UI -->
+                        </div>
+                
+                        <div id="bmi" class="calculator-content">
+                            <h2>BMI Calculator</h2>
+                            <input type="number" id="weight" placeholder="Weight (kg)">
+                            <input type="number" id="height" placeholder="Height (cm)">
+                            <button onclick="calculateBMI()">Calculate</button>
+                            <div id="bmiResult"></div>
+                        </div>
+                
+                        <div id="mortgage" class="calculator-content">
+                            <h2>Mortgage Calculator</h2>
+                            <input type="number" id="loanAmount" placeholder="Loan Amount">
+                            <input type="number" id="interestRate" placeholder="Interest Rate (%)">
+                            <input type="number" id="loanTerm" placeholder="Loan Term (years)">
+                            <button onclick="calculateMortgage()">Calculate</button>
+                            <div id="mortgageResult"></div>
+                        </div>
+                    </div>
+                
+                    <script>
+                        // Tabs functionality
+                        function showCalculator(calculatorId) {
+                            document.querySelectorAll('.calculator-content').forEach(el => el.classList.remove('active'));
+                            document.querySelectorAll('.calculator-tab').forEach(el => el.classList.remove('active'));
+                            document.getElementById(calculatorId).classList.add('active');
+                            event.target.classList.add('active');
+                        }
+                
+                        // BMI Calculator
+                        function calculateBMI() {
+                            const weight = parseFloat(document.getElementById('weight').value);
+                            const height = parseFloat(document.getElementById('height').value) / 100;
+                            const bmi = weight / (height * height);
+                            let category = '';
+                            
+                            if(bmi < 18.5) category = 'Underweight';
+                            else if(bmi < 25) category = 'Normal weight';
+                            else if(bmi < 30) category = 'Overweight';
+                            else category = 'Obese';
+                
+                            document.getElementById('bmiResult').innerHTML = `
+                                BMI: ${bmi.toFixed(1)} (${category})
+                            `;
+                        }
+                
+                        // Mortgage Calculator
+                        function calculateMortgage() {
+                            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+                            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+                            const loanTerm = parseFloat(document.getElementById('loanTerm').value) * 12;
+                            
+                            const monthlyPayment = (loanAmount * interestRate * Math.pow(1 + interestRate, loanTerm)) / 
+                                                 (Math.pow(1 + interestRate, loanTerm) - 1);
+                            
+                            document.getElementById('mortgageResult').innerHTML = `
+                                Monthly Payment: $${monthlyPayment.toFixed(2)}
+                            `;
+                        }
+                    </script>
+                </body>
+                </html>
+
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Personal Finance Calculator</h2>
+                <!-- Personal Finance Calculator HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Finance Calculator</title>
+                    <link rel="stylesheet" href="../style.css">
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>Personal Finance Calculator</h1>
+                        <div class="calculator">
+                            <div class="finance-section">
+                                <h2>Compound Interest Calculator</h2>
+                                <input type="number" id="principal" placeholder="Principal Amount">
+                                <input type="number" id="rate" placeholder="Annual Rate (%)">
+                                <input type="number" id="years" placeholder="Years">
+                                <select id="compoundFrequency">
+                                    <option value="1">Annually</option>
+                                    <option value="12">Monthly</option>
+                                    <option value="365">Daily</option>
+                                </select>
+                                <button onclick="calculateCompoundInterest()">Calculate</button>
+                                <div id="compoundResult"></div>
+                            </div>
+                
+                            <div class="finance-section">
+                                <h2>Loan Payoff Calculator</h2>
+                                <input type="number" id="debtAmount" placeholder="Debt Amount">
+                                <input type="number" id="debtRate" placeholder="Interest Rate (%)">
+                                <input type="number" id="payment" placeholder="Monthly Payment">
+                                <button onclick="calculatePayoff()">Calculate</button>
+                                <div id="payoffResult"></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <script>
+                        function calculateCompoundInterest() {
+                            const principal = parseFloat(document.getElementById('principal').value);
+                            const rate = parseFloat(document.getElementById('rate').value) / 100;
+                            const years = parseFloat(document.getElementById('years').value);
+                            const frequency = parseFloat(document.getElementById('compoundFrequency').value);
+                            
+                            const amount = principal * Math.pow(1 + rate/frequency, frequency * years);
+                            const interest = amount - principal;
+                            
+                            document.getElementById('compoundResult').innerHTML = `
+                                Total Amount: $${amount.toFixed(2)}<br>
+                                Interest Earned: $${interest.toFixed(2)}
+                            `;
+                        }
+                
+                        function calculatePayoff() {
+                            const debtAmount = parseFloat(document.getElementById('debtAmount').value);
+                            const monthlyRate = parseFloat(document.getElementById('debtRate').value) / 100 / 12;
+                            const monthlyPayment = parseFloat(document.getElementById('payment').value);
+                            
+                            let balance = debtAmount;
+                            let months = 0;
+                            
+                            while(balance > 0 && months < 1000) {
+                                const interest = balance * monthlyRate;
+                                balance = balance + interest - monthlyPayment;
+                                months++;
+                                
+                                if(balance < 0) balance = 0;
+                            }
+                            
+                            const years = Math.floor(months / 12);
+                            const remainingMonths = months % 12;
+                            
+                            document.getElementById('payoffResult').innerHTML = `
+                                Payoff Time: ${years} years ${remainingMonths} months<br>
+                                Total Paid: $${(monthlyPayment * months).toFixed(2)}
+                            `;
+                        }
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Image Optimization</h2>
+                <!-- Password generator HTML from previous answer -->
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Optimization Tool</title>
+  
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Image Optimization Tool</h1>
+        <input type="file" id="imageInput" accept="image/*">
+        <div class="controls">
+            <label>
+                Quality: <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8">
+                <span id="qualityValue">0.8</span>
+            </label>
+            <label>
+                Max Width: <input type="number" id="maxWidth" value="1024" min="100" max="5000">
+            </label>
+        </div>
+        <div class="preview-container">
+            <img id="preview" src="" alt="Image Preview" style="display: none;">
+            <div id="stats"></div>
+        </div>
+        <button onclick="optimizeImage()">Optimize Image</button>
+    </div>
+
+    <script>
+        // Update quality value display
+        document.getElementById('quality').addEventListener('input', function() {
+            document.getElementById('qualityValue').textContent = this.value;
+        });
+
+        // Handle image upload and preview
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.getElementById('preview');
+                    img.src = event.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Optimize image
+        function optimizeImage() {
+            const img = document.getElementById('preview');
+            const quality = parseFloat(document.getElementById('quality').value);
+            const maxWidth = parseInt(document.getElementById('maxWidth').value);
+
+            if (!img.src) {
+                alert('Please upload an image first.');
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Calculate new dimensions
+            let width = img.naturalWidth;
+            let height = img.naturalHeight;
+            if (width > maxWidth) {
+                height = height * (maxWidth / width);
+                width = maxWidth;
+            }
+
+            // Set canvas dimensions
+            canvas.width = width;
+            canvas.height = height;
+
+            // Draw image on canvas with new dimensions
+            ctx.drawImage(img, 0, 0, width, height);
+
+            // Convert canvas to Blob and download
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'optimized-image.jpg';
+                a.click();
+
+                // Show optimization stats
+                const originalSize = document.getElementById('imageInput').files[0].size;
+                const optimizedSize = blob.size;
+                document.getElementById('stats').innerHTML = `
+                    <strong>Original Size:</strong> ${(originalSize / 1024).toFixed(1)} KB<br>
+                    <strong>Optimized Size:</strong> ${(optimizedSize / 1024).toFixed(1)} KB<br>
+                    <strong>Reduction:</strong> ${((1 - optimizedSize / originalSize) * 100).toFixed(1)}%
+                `;
+            }, 'image/jpeg', quality);
+        }
+    </script>
+</body>
+</html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Code Sandbox</h2>
+                <!-- Code Sandbox HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Code Sandbox</title>
+                    <link rel="stylesheet" href="../style.css">
+                    <style>
+                        .editor-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+                        textarea { width: 100%; height: 300px; font-family: monospace; }
+                        #preview { width: 100%; height: 500px; border: 1px solid #ccc; }
+                    </style>
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>Code Sandbox</h1>
+                        <div class="editor-container">
+                            <div>
+                                <h3>HTML</h3>
+                                <textarea id="htmlCode" placeholder="Enter HTML here"></textarea>
+                            </div>
+                            <div>
+                                <h3>CSS</h3>
+                                <textarea id="cssCode" placeholder="Enter CSS here"></textarea>
+                            </div>
+                            <div>
+                                <h3>JavaScript</h3>
+                                <textarea id="jsCode" placeholder="Enter JavaScript here"></textarea>
+                            </div>
+                        </div>
+                        <button onclick="runCode()" style="margin: 20px 0;">Run Code</button>
+                        <h3>Preview</h3>
+                        <iframe id="preview"></iframe>
+                    </div>
+                
+                    <script>
+                        function runCode() {
+                            const html = document.getElementById('htmlCode').value;
+                            const css = document.getElementById('cssCode').value;
+                            const js = document.getElementById('jsCode').value;
+                            
+                            const code = `
+                                <html>
+                                <head>
+                                    <style>${css}</style>
+                                </head>
+                                <body>
+                                    ${html}
+                                    <script>
+                                        try {
+                                            ${js}
+                                        } catch(e) {
+                                            console.error(e);
+                                        }
+                                    <\/script>
+                                </body>
+                                </html>
+                            `;
+                
+                            const preview = document.getElementById('preview');
+                            preview.srcdoc = code;
+                        }
+                
+                        // Auto-run code when typing
+                        let timeout;
+                        document.querySelectorAll('textarea').forEach(ta => {
+                            ta.addEventListener('input', () => {
+                                clearTimeout(timeout);
+                                timeout = setTimeout(runCode, 1000);
+                            });
+                        });
+                
+                        // Load sample code
+                        window.onload = () => {
+                            document.getElementById('htmlCode').value = '<h1>Hello World!</h1>\n<button onclick="alert(\'Clicked!\')">Click Me</button>';
+                            document.getElementById('cssCode').value = 'body { padding: 20px; }\nbutton { background: #3498db; color: white; }';
+                            document.getElementById('jsCode').value = 'console.log("Sandbox ready!");';
+                            runCode();
+                        };
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Text Optimizer</h2>
+                <!-- Text Optimizer HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Text Optimizer</title>
+                    <link rel="stylesheet" href="../style.css">
+                    <style>
+                        .text-columns { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+                        .stats-box { background: #f8f9fa; padding: 20px; border-radius: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="tool-container">
+                        <h1>Text Optimization Toolkit</h1>
+                        <div class="text-columns">
+                            <div>
+                                <textarea id="textInput" placeholder="Paste your text here..." style="height: 400px;"></textarea>
+                                <div class="button-group">
+                                    <button onclick="analyzeText()">Analyze</button>
+                                    <button onclick="summarizeText()">Summarize</button>
+                                    <button onclick="paraphraseText()">Paraphrase</button>
+                                </div>
+                            </div>
+                            
+                            <div class="stats-box">
+                                <h3>Statistics</h3>
+                                <div id="wordCount">Words: 0</div>
+                                <div id="charCount">Characters: 0</div>
+                                <div id="readability">Readability: -</div>
+                                
+                                <h3 style="margin-top: 20px;">Keyword Density</h3>
+                                <div id="keywords"></div>
+                                
+                                <h3 style="margin-top: 20px;">Suggestions</h3>
+                                <div id="suggestions"></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <script>
+                        function analyzeText() {
+                            const text = document.getElementById('textInput').value;
+                            const words = text.match(/\b\w+\b/g) || [];
+                            const sentences = text.split(/[.!?]+/).filter(s => s.trim());
+                            
+                            // Basic counts
+                            document.getElementById('wordCount').textContent = `Words: ${words.length}`;
+                            document.getElementById('charCount').textContent = `Characters: ${text.length}`;
+                            
+                            // Readability score (Flesch-Kincaid)
+                            const wordCount = words.length;
+                            const sentenceCount = sentences.length;
+                            const syllableCount = countSyllables(text);
+                            const readability = 206.835 - 1.015*(wordCount/sentenceCount) - 84.6*(syllableCount/wordCount);
+                            document.getElementById('readability').textContent = 
+                                `Readability: ${readability.toFixed(1)} (${getReadabilityLevel(readability)})`;
+                            
+                            // Keyword density
+                            const keywordMap = {};
+                            words.forEach(word => {
+                                const lowerWord = word.toLowerCase();
+                                keywordMap[lowerWord] = (keywordMap[lowerWord] || 0) + 1;
+                            });
+                            const sortedKeywords = Object.entries(keywordMap)
+                                .sort((a, b) => b[1] - a[1])
+                                .slice(0, 5);
+                            document.getElementById('keywords').innerHTML = sortedKeywords
+                                .map(([word, count]) => `${word}: ${count} (${((count/wordCount)*100).toFixed(1)}%)`)
+                                .join('<br>');
+                        }
+                
+                        function summarizeText() {
+                            const text = document.getElementById('textInput').value;
+                            const sentences = text.split(/[.!?]+/).filter(s => s.trim());
+                            const importantSentences = sentences
+                                .map(s => ({ text: s, score: sentenceImportance(s) }))
+                                .sort((a, b) => b.score - a.score)
+                                .slice(0, Math.ceil(sentences.length/3))
+                                .sort((a, b) => sentences.indexOf(a.text) - sentences.indexOf(b.text))
+                                .map(s => s.text);
+                            
+                            document.getElementById('textInput').value = importantSentences.join('. ') + '.';
+                            analyzeText();
+                        }
+                
+                        function countSyllables(text) {
+                            const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+                            return words.reduce((count, word) => {
+                                const syllables = word.split(/[aeiouy]{1,2}/).length - 1;
+                                return count + (syllables < 1 ? 1 : syllables);
+                            }, 0);
+                        }
+                
+                        function getReadabilityLevel(score) {
+                            if(score >= 90) return 'Very Easy';
+                            if(score >= 80) return 'Easy';
+                            if(score >= 70) return 'Fairly Easy';
+                            if(score >= 60) return 'Standard';
+                            if(score >= 50) return 'Fairly Difficult';
+                            return 'Difficult';
+                        }
+                
+                        function sentenceImportance(sentence) {
+                            const keywords = ['important', 'key', 'crucial', 'essential', 'significant'];
+                            const words = sentence.toLowerCase().match(/\b\w+\b/g) || [];
+                            const lengthScore = words.length / 20;
+                            const keywordScore = words.filter(w => keywords.includes(w)).length;
+                            return lengthScore + keywordScore;
+                        }
+                
+                        function paraphraseText() {
+                            const replacements = {
+                                "hello": ["hi", "greetings", "good day"],
+                                "important": ["crucial", "vital", "critical"],
+                                "example": ["instance", "illustration", "case"]
+                            };
+                            
+                            const text = document.getElementById('textInput').value;
+                            const words = text.split(/\b/);
+                            
+                            const paraphrased = words.map(word => {
+                                const lowerWord = word.toLowerCase().replace(/[^a-z]/g, '');
+                                const alternatives = replacements[lowerWord];
+                                return alternatives ? alternatives[Math.floor(Math.random()*alternatives.length)] : word;
+                            }).join('');
+                            
+                            document.getElementById('textInput').value = paraphrased;
+                            analyzeText();
+                        }
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Health And Fitness Calculator</h2>
+                <!-- Health and Fitness HTML from previous answer -->
+                <div class="tool-card">
+                    <h2 class="tool-title">Health & Fitness Calculator</h2>
+                    <div class="tabs">
+                        <button class="tab-button active" onclick="switchTab('calorie')">Calorie Calculator</button>
+                        <button class="tab-button" onclick="switchTab('workout')">Workout Planner</button>
+                    </div>
+                
+                    <!-- Calorie Calculator -->
+                    <div id="calorie" class="tab-content active">
+                        <h3>Daily Calorie Needs</h3>
+                        <form id="calorieForm">
+                            <label>Gender:</label>
+                            <select id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                
+                            <label>Age:</label>
+                            <input type="number" id="age" placeholder="Age (years)" min="1" required>
+                
+                            <label>Weight (kg):</label>
+                            <input type="number" id="weight" placeholder="Weight" min="1" required>
+                
+                            <label>Height (cm):</label>
+                            <input type="number" id="height" placeholder="Height" min="1" required>
+                
+                            <label>Activity Level:</label>
+                            <select id="activity">
+                                <option value="1.2">Sedentary (little or no exercise)</option>
+                                <option value="1.375">Lightly Active (light exercise/sports 1-3 days/week)</option>
+                                <option value="1.55">Moderately Active (moderate exercise/sports 3-5 days/week)</option>
+                                <option value="1.725">Very Active (hard exercise/sports 6-7 days/week)</option>
+                                <option value="1.9">Extra Active (very hard exercise & physical job)</option>
+                            </select>
+                
+                            <button type="button" onclick="calculateCalories()">Calculate</button>
+                        </form>
+                        <div id="calorieResult" class="result"></div>
+                    </div>
+                
+                    <!-- Workout Planner -->
+                    <div id="workout" class="tab-content">
+                        <h3>Workout Planner</h3>
+                        <form id="workoutForm">
+                            <label>Workout Type:</label>
+                            <select id="workoutType">
+                                <option value="cardio">Cardio</option>
+                                <option value="strength">Strength Training</option>
+                                <option value="hiit">HIIT</option>
+                                <option value="yoga">Yoga</option>
+                            </select>
+                
+                            <label>Duration (minutes):</label>
+                            <input type="number" id="duration" placeholder="Duration" min="10" required>
+                
+                            <label>Intensity:</label>
+                            <select id="intensity">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                
+                            <button type="button" onclick="generateWorkout()">Generate Plan</button>
+                        </form>
+                        <div id="workoutResult" class="result"></div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Tab Switching
+                    function switchTab(tabName) {
+                        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                        document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+                        document.getElementById(tabName).classList.add('active');
+                        document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+                    }
+                
+                    // Calorie Calculator
+                    function calculateCalories() {
+                        const gender = document.getElementById('gender').value;
+                        const age = parseFloat(document.getElementById('age').value);
+                        const weight = parseFloat(document.getElementById('weight').value);
+                        const height = parseFloat(document.getElementById('height').value);
+                        const activity = parseFloat(document.getElementById('activity').value);
+                
+                        let bmr = (gender === 'male') 
+                            ? 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+                            : 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+                
+                        const tdee = bmr * activity;
+                        document.getElementById('calorieResult').innerHTML = `
+                            <p>Your daily calorie needs: <strong>${tdee.toFixed(0)} kcal</strong></p>
+                            <p>To lose weight: <strong>${(tdee - 500).toFixed(0)} kcal/day</strong></p>
+                            <p>To gain weight: <strong>${(tdee + 500).toFixed(0)} kcal/day</strong></p>
+                        `;
+                    }
+                
+                    // Workout Planner
+                    function generateWorkout() {
+                        const type = document.getElementById('workoutType').value;
+                        const duration = parseInt(document.getElementById('duration').value);
+                        const intensity = document.getElementById('intensity').value;
+                
+                        const workouts = {
+                            cardio: ['Running', 'Cycling', 'Swimming', 'Jump Rope'],
+                            strength: ['Push-ups', 'Squats', 'Deadlifts', 'Pull-ups'],
+                            hiit: ['Burpees', 'Mountain Climbers', 'Jump Squats', 'Plank Jacks'],
+                            yoga: ['Sun Salutation', 'Warrior Pose', 'Tree Pose', 'Downward Dog']
+                        };
+                
+                        const plan = workouts[type]
+                            .map(exercise => `${exercise}: ${Math.floor(duration / workouts[type].length)} minutes`)
+                            .join('<br>');
+                
+                        document.getElementById('workoutResult').innerHTML = `
+                            <p><strong>${intensity.toUpperCase()} ${type.toUpperCase()} Plan:</strong></p>
+                            <p>${plan}</p>
+                        `;
+                    }
+                </script>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Mindfulness Toolkit</h2>
+                <!-- Mindfulness Toolkit HTML from previous answer -->
+                <div class="tool-card">
+                    <h2 class="tool-title">Mindfulness Toolkit</h2>
+                    <div class="tabs">
+                        <button class="tab-button active" onclick="switchTab('breathing')">Breathing Exercises</button>
+                        <button class="tab-button" onclick="switchTab('meditation')">Meditation Timer</button>
+                    </div>
+                
+                    <!-- Breathing Exercises -->
+                    <div id="breathing" class="tab-content active">
+                        <h3>Guided Breathing</h3>
+                        <div class="breathing-container">
+                            <div class="circle" id="breathingCircle"></div>
+                            <div class="instructions" id="breathingInstructions">Click Start to Begin</div>
+                            <button onclick="startBreathing()" id="breathingButton">Start</button>
+                        </div>
+                    </div>
+                
+                    <!-- Meditation Timer -->
+                    <div id="meditation" class="tab-content">
+                        <h3>Meditation Timer</h3>
+                        <div class="timer-container">
+                            <input type="number" id="minutes" placeholder="Minutes" min="1" max="60">
+                            <button onclick="startMeditation()">Start Timer</button>
+                            <div id="timerDisplay">00:00</div>
+                            <audio id="bellSound" src="https://assets.mixkit.co/active_storage/sfx/2428/2428-preview.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Tab Switching
+                    function switchTab(tabName) {
+                        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                        document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+                        document.getElementById(tabName).classList.add('active');
+                        document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+                    }
+                
+                    // Breathing Exercises
+                    let breathingInterval;
+                    function startBreathing() {
+                        const circle = document.getElementById('breathingCircle');
+                        const button = document.getElementById('breathingButton');
+                        const instructions = document.getElementById('breathingInstructions');
+                
+                        if (button.textContent === 'Start') {
+                            button.textContent = 'Stop';
+                            let phase = 0;
+                            breathingInterval = setInterval(() => {
+                                phase = (phase + 1) % 4;
+                                if (phase === 0) {
+                                    circle.style.transform = 'scale(1)';
+                                    instructions.textContent = 'Breathe In';
+                                } else if (phase === 1) {
+                                    circle.style.transform = 'scale(1.5)';
+                                    instructions.textContent = 'Hold';
+                                } else if (phase === 2) {
+                                    circle.style.transform = 'scale(1)';
+                                    instructions.textContent = 'Breathe Out';
+                                } else {
+                                    instructions.textContent = 'Hold';
+                                }
+                            }, 4000);
+                        } else {
+                            clearInterval(breathingInterval);
+                            button.textContent = 'Start';
+                            instructions.textContent = 'Click Start to Begin';
+                            circle.style.transform = 'scale(1)';
+                        }
+                    }
+                
+                    // Meditation Timer
+                    let meditationTimer;
+                    function startMeditation() {
+                        const minutes = parseInt(document.getElementById('minutes').value);
+                        if (isNaN(minutes) || minutes < 1) return alert('Please enter a valid time.');
+                
+                        let timeLeft = minutes * 60;
+                        const timerDisplay = document.getElementById('timerDisplay');
+                        const bellSound = document.getElementById('bellSound');
+                
+                        clearInterval(meditationTimer);
+                        meditationTimer = setInterval(() => {
+                            if (timeLeft <= 0) {
+                                clearInterval(meditationTimer);
+                                bellSound.play();
+                                timerDisplay.textContent = '00:00';
+                                alert('Meditation session complete!');
+                                return;
+                            }
+                            const minutesLeft = Math.floor(timeLeft / 60);
+                            const secondsLeft = timeLeft % 60;
+                            timerDisplay.textContent = `${String(minutesLeft).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
+                            timeLeft--;
+                        }, 1000);
+                    }
+                </script>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Smart Task Manager</h2>
+                <!-- Task Manager HTML -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Smart Task Manager</title>
+                </head>
+                <body>
+                    <div class="tool-card">
+                        <h2 class="tool-title">Smart Task Manager</h2>
+                        <!-- Task Input -->
+                        <div class="task-input">
+                            <input type="text" id="taskInput" placeholder="Add a new task...">
+                            <input type="date" id="dueDate">
+                            <input type="time" id="dueTime">
+                            <button onclick="addTask()">Add Task</button>
+                        </div>
+                
+                        <!-- Task List -->
+                        <div class="task-list" id="taskList"></div>
+                
+                        <!-- Analytics -->
+                        <div class="analytics">
+                            <h3>Analytics</h3>
+                            <canvas id="analyticsChart"></canvas>
+                        </div>
+                
+                        <!-- Export and Collaboration -->
+                        <div class="export-collaboration">
+                            <button onclick="exportTasksCSV()">Export as CSV</button><br /><br />
+                            <button onclick="exportTasksPDF()">Export as PDF</button><br /><br />
+                            <button onclick="addCollaborator()">Add Collaborator</button>
+                        </div>
+                    </div>
+                
+                    <!-- Include Chart.js for Analytics -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                
+                    <!-- Include jsPDF for PDF Export -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                
+                    <script>
+                        // Task Data
+                        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                        let collaborators = JSON.parse(localStorage.getItem('collaborators')) || [];
+                
+                        // Add Task
+                        function addTask() {
+                            const taskInput = document.getElementById('taskInput');
+                            const dueDateInput = document.getElementById('dueDate');
+                            const dueTimeInput = document.getElementById('dueTime');
+                            const taskText = taskInput.value.trim();
+                            const dueDate = dueDateInput.value;
+                            const dueTime = dueTimeInput.value;
+                
+                            if (!taskText) {
+                                alert('Please enter a task.');
+                                return;
+                            }
+                
+                            // Combine date and time into a single due datetime
+                            const dueDateTime = dueDate && dueTime ? `${dueDate}T${dueTime}` : null;
+                
+                            // AI-Powered Priority Assignment (Dummy Implementation)
+                            const priority = assignPriority(taskText);
+                
+                            const task = {
+                                id: Date.now(),
+                                text: taskText,
+                                priority,
+                                dueDateTime,
+                                completed: false,
+                            };
+                
+                            tasks.push(task);
+                            saveTasks();
+                            renderTasks();
+                            taskInput.value = '';
+                            dueDateInput.value = '';
+                            dueTimeInput.value = '';
+                            checkDueDateNotifications();
+                            updateAnalytics();
+                        }
+                
+                        // Assign Priority (Dummy AI Implementation)
+                        function assignPriority(taskText) {
+                            const keywords = {
+                                high: ['urgent', 'important', 'asap', 'deadline'],
+                                medium: ['review', 'check', 'update', 'follow up'],
+                                low: ['optional', 'later', 'low priority'],
+                            };
+                
+                            for (const [priority, words] of Object.entries(keywords)) {
+                                if (words.some(word => taskText.toLowerCase().includes(word))) {
+                                    return priority;
+                                }
+                            }
+                            return 'medium'; // Default priority
+                        }
+                
+                        // Render Tasks
+                        function renderTasks() {
+                            const taskList = document.getElementById('taskList');
+                            // Sort tasks by priority and due datetime
+                            tasks.sort((a, b) => {
+                                const priorityOrder = { high: 1, medium: 2, low: 3 };
+                                if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+                                    return priorityOrder[a.priority] - priorityOrder[b.priority];
+                                }
+                                return (a.dueDateTime || '9999-12-31T23:59') > (b.dueDateTime || '9999-12-31T23:59') ? 1 : -1;
+                            });
+                
+                            taskList.innerHTML = tasks.map(task => `
+                                <div class="task-item ${task.completed ? 'completed' : ''}">
+                                    <span>${task.text}</span>
+                                    <div class="priority ${task.priority}">${task.priority.toUpperCase()}</div>
+                                    <div class="due-date">Due: ${task.dueDateTime ? new Date(task.dueDateTime).toLocaleString() : 'No deadline'}</div>
+                                    <button onclick="toggleTaskCompletion(${task.id})">${task.completed ? 'Undo' : 'Complete'}</button>
+                                    <button onclick="deleteTask(${task.id})">🗑️</button>
+                                </div>
+                            `).join('');
+                        }
+                
+                        // Toggle Task Completion
+                        function toggleTaskCompletion(taskId) {
+                            const task = tasks.find(task => task.id === taskId);
+                            if (task) {
+                                task.completed = !task.completed;
+                                saveTasks();
+                                renderTasks();
+                                updateAnalytics();
+                            }
+                        }
+                
+                        // Delete Task
+                        function deleteTask(taskId) {
+                            tasks = tasks.filter(task => task.id !== taskId);
+                            saveTasks();
+                            renderTasks();
+                            updateAnalytics();
+                        }
+                
+                        // Check Due Date Notifications
+                        function checkDueDateNotifications() {
+                            tasks.forEach(task => {
+                                if (task.dueDateTime && !task.completed) {
+                                    const dueDateTime = new Date(task.dueDateTime);
+                                    const now = new Date();
+                                    if (dueDateTime <= now) {
+                                        sendNotification(`Task "${task.text}" is due now!`);
+                                    } else if ((dueDateTime - now) / (1000 * 60 * 60) <= 1) {
+                                        sendNotification(`Task "${task.text}" is due in 1 hour!`);
+                                    }
+                                }
+                            });
+                        }
+                
+                        // Send Browser Notification
+                        function sendNotification(message) {
+                            if (Notification.permission === 'granted') {
+                                new Notification(message);
+                            } else if (Notification.permission !== 'denied') {
+                                Notification.requestPermission().then(permission => {
+                                    if (permission === 'granted') {
+                                        new Notification(message);
+                                    }
+                                });
+                            }
+                        }
+                
+                        // Export Tasks as CSV
+                        function exportTasksCSV() {
+                            const csvContent = "data:text/csv;charset=utf-8," +
+                                "Task,Priority,Due Date,Status\n" +
+                                tasks.map(task => `${task.text},${task.priority},${task.dueDateTime ? new Date(task.dueDateTime).toLocaleString() : 'No deadline'},${task.completed ? 'Completed' : 'Pending'}`).join("\n");
+                            const encodedUri = encodeURI(csvContent);
+                            const link = document.createElement("a");
+                            link.setAttribute("href", encodedUri);
+                            link.setAttribute("download", "tasks.csv");
+                            document.body.appendChild(link);
+                            link.click();
+                        }
+                
+                        // Export Tasks as PDF
+                        function exportTasksPDF() {
+                            const { jsPDF } = window.jspdf;
+                            const doc = new jsPDF();
+                            doc.text("Task List", 10, 10);
+                            tasks.forEach((task, index) => {
+                                doc.text(`${task.text} (${task.priority}) - Due: ${task.dueDateTime ? new Date(task.dueDateTime).toLocaleString() : 'No deadline'} - ${task.completed ? 'Completed' : 'Pending'}`, 10, 20 + (index * 10));
+                            });
+                            doc.save('tasks.pdf');
+                        }
+                
+                        // Add Collaborator (Simulated)
+                        function addCollaborator() {
+                            const email = prompt("Enter collaborator's email:");
+                            if (email) {
+                                const role = prompt("Enter role (viewer/editor/admin):");
+                                if (role) {
+                                    collaborators.push({ email, role });
+                                    saveCollaborators();
+                                    alert(`Added ${email} as ${role}`);
+                                }
+                            }
+                        }
+                
+                        // Update Analytics Chart
+                        let analyticsChart;
+                        function updateAnalytics() {
+                            const ctx = document.getElementById('analyticsChart').getContext('2d');
+                            if (analyticsChart) analyticsChart.destroy();
+                            analyticsChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Completed', 'Pending'],
+                                    datasets: [{
+                                        label: 'Tasks',
+                                        data: [
+                                            tasks.filter(task => task.completed).length,
+                                            tasks.filter(task => !task.completed).length,
+                                        ],
+                                        backgroundColor: ['#2ecc71', '#e74c3c'],
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            title: {
+                                                display: true,
+                                                text: 'Number of Tasks',
+                                            }
+                                        },
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: 'Status',
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                
+                        // Save Data to LocalStorage
+                        function saveTasks() {
+                            localStorage.setItem('tasks', JSON.stringify(tasks));
+                        }
+                
+                        function saveCollaborators() {
+                            localStorage.setItem('collaborators', JSON.stringify(collaborators));
+                        }
+                
+                        // Initial Render
+                        renderTasks();
+                        checkDueDateNotifications();
+                        updateAnalytics();
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Password Generator</h2>
+                <!-- Password generator HTML from previous answer -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Enhanced Time Tracker & Pomodoro App</title>
+                </head>
+                <body>
+                    <div class="tool-card">
+                        <h2 class="tool-title">Enhanced Time Tracker & Pomodoro App</h2>
+                        <div class="time-tracker-container">
+                            <!-- Task Input -->
+                            <div class="task-input">
+                                <h3>Add a New Task</h3>
+                                <input type="text" id="taskName" placeholder="Task Name">
+                                <button onclick="addTask()">Add Task</button>
+                            </div>
+                
+                            <!-- Task List -->
+                            <div class="task-list">
+                                <h3>Tasks</h3>
+                                <div class="tasks" id="taskList"></div>
+                            </div>
+                
+                            <!-- Pomodoro Timer -->
+                            <div class="pomodoro-timer">
+                                <h3>Pomodoro Timer</h3>
+                                <div class="timer-display" id="timerDisplay">25:00</div>
+                                <div class="timer-controls">
+                                    <button onclick="startPomodoro()">Start</button>
+                                    <button onclick="pausePomodoro()">Pause</button>
+                                    <button onclick="resetPomodoro()">Reset</button>
+                                </div>
+                                <div class="pomodoro-settings">
+                                    <label>Work Duration (minutes):</label>
+                                    <input type="number" id="workDuration" value="25" min="1">
+                                    <label>Break Duration (minutes):</label>
+                                    <input type="number" id="breakDuration" value="5" min="1">
+                                </div>
+                            </div>
+                
+                            <!-- Time Tracking Summary -->
+                            <div class="time-summary">
+                                <h3>Time Summary</h3>
+                                <div class="summary" id="timeSummary"></div>
+                            </div>
+                
+                            <!-- Analytics -->
+                            <div class="analytics">
+                                <h3>Analytics</h3>
+                                <canvas id="timeChart"></canvas>
+                            </div>
+                
+                            <!-- Export Data -->
+                            <div class="export-data">
+                                <h3>Export Data</h3>
+                                <button onclick="exportTimeDataCSV()">Export as CSV</button>
+                                <button onclick="exportTimeDataPDF()">Export as PDF</button>
+                            </div>
+                
+                            <!-- Calendar Integration -->
+                            <div class="calendar-integration">
+                                <h3>Calendar Integration</h3>
+                                <button onclick="syncWithGoogleCalendar()">Sync with Google Calendar</button>
+                                <button onclick="syncWithOutlook()">Sync with Outlook</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Include Chart.js for Analytics -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                
+                    <!-- Include jsPDF for PDF Export -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                
+                    <script>
+                        // Task Data
+                        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                        let activeTaskId = null;
+                        let timerInterval = null;
+                        let timeSpent = JSON.parse(localStorage.getItem('timeSpent')) || {};
+                
+                        // Pomodoro Timer Variables
+                        let isPomodoroRunning = false;
+                        let isWorkSession = true;
+                        let timeLeft = 25 * 60; // 25 minutes in seconds
+                
+                        // Add Task
+                        function addTask() {
+                            const taskName = document.getElementById('taskName').value.trim();
+                
+                            // Validate task name
+                            if (!taskName) {
+                                alert('Please enter a task name.');
+                                return; // Exit the function if the task name is empty
+                            }
+                
+                            const task = {
+                                id: Date.now(),
+                                name: taskName,
+                                timeSpent: 0, // Time in seconds
+                            };
+                
+                            tasks.push(task);
+                            saveTasks();
+                            renderTasks();
+                            document.getElementById('taskName').value = ''; // Clear the input field
+                            updateChart();
+                        }
+                
+                        // Render Tasks
+                        function renderTasks() {
+                            const taskList = document.getElementById('taskList');
+                            taskList.innerHTML = tasks.map(task => `
+                                <div class="task-item ${activeTaskId === task.id ? 'active' : ''}">
+                                    <span>${task.name}</span>
+                                    <small>${formatTime(task.timeSpent)}</small>
+                                    <button onclick="startTaskTimer(${task.id})">${activeTaskId === task.id ? 'Stop' : 'Start'}</button>
+                                    <button onclick="deleteTask(${task.id})">🗑️</button>
+                                </div>
+                            `).join('');
+                        }
+                
+                        // Start Task Timer
+                        function startTaskTimer(taskId) {
+                            if (activeTaskId === taskId) {
+                                activeTaskId = null; // Stop tracking
+                            } else {
+                                activeTaskId = taskId; // Start tracking
+                            }
+                            renderTasks();
+                        }
+                
+                        // Delete Task
+                        function deleteTask(taskId) {
+                            tasks = tasks.filter(task => task.id !== taskId);
+                            saveTasks();
+                            renderTasks();
+                            updateChart();
+                        }
+                
+                        // Format Time (seconds to HH:MM:SS)
+                        function formatTime(seconds) {
+                            const hours = Math.floor(seconds / 3600);
+                            const minutes = Math.floor((seconds % 3600) / 60);
+                            const secs = seconds % 60;
+                            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                        }
+                
+                        // Pomodoro Timer Functions
+                        function startPomodoro() {
+                            if (isPomodoroRunning) return;
+                            isPomodoroRunning = true;
+                            timeLeft = document.getElementById('workDuration').value * 60;
+                            timerInterval = setInterval(updateTimer, 1000);
+                        }
+                
+                        function pausePomodoro() {
+                            clearInterval(timerInterval);
+                            isPomodoroRunning = false;
+                        }
+                
+                        function resetPomodoro() {
+                            clearInterval(timerInterval);
+                            isPomodoroRunning = false;
+                            isWorkSession = true;
+                            timeLeft = document.getElementById('workDuration').value * 60;
+                            updateTimerDisplay();
+                        }
+                
+                        function updateTimer() {
+                            if (timeLeft > 0) {
+                                timeLeft--;
+                                updateTimerDisplay();
+                            } else {
+                                clearInterval(timerInterval);
+                                isPomodoroRunning = false;
+                                sendNotification(isWorkSession ? 'Time for a break!' : 'Break over! Back to work!');
+                                isWorkSession = !isWorkSession;
+                                timeLeft = (isWorkSession ? document.getElementById('workDuration').value : document.getElementById('breakDuration').value) * 60;
+                                updateTimerDisplay();
+                            }
+                        }
+                
+                        function updateTimerDisplay() {
+                            const minutes = Math.floor(timeLeft / 60);
+                            const seconds = timeLeft % 60;
+                            document.getElementById('timerDisplay').textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                        }
+                
+                        // Send Browser Notification
+                        function sendNotification(message) {
+                            if (Notification.permission === 'granted') {
+                                new Notification(message);
+                            } else if (Notification.permission !== 'denied') {
+                                Notification.requestPermission().then(permission => {
+                                    if (permission === 'granted') {
+                                        new Notification(message);
+                                    }
+                                });
+                            }
+                        }
+                
+                        // Time Tracking Summary
+                        function updateTimeSummary() {
+                            const summary = document.getElementById('timeSummary');
+                            summary.innerHTML = tasks.map(task => `
+                                <div class="summary-item">
+                                    <span>${task.name}</span>
+                                    <small>${formatTime(task.timeSpent)}</small>
+                                </div>
+                            `).join('');
+                        }
+                
+                        // Analytics Chart
+                        let timeChart;
+                        function updateChart() {
+                            const ctx = document.getElementById('timeChart').getContext('2d');
+                            if (timeChart) timeChart.destroy();
+                            timeChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: tasks.map(task => task.name),
+                                    datasets: [{
+                                        label: 'Time Spent (hours)',
+                                        data: tasks.map(task => task.timeSpent / 3600),
+                                        backgroundColor: '#3498db',
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            title: {
+                                                display: true,
+                                                text: 'Hours',
+                                            }
+                                        },
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: 'Tasks',
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                
+                        // Export Data as CSV
+                        function exportTimeDataCSV() {
+                            const csvContent = "data:text/csv;charset=utf-8," +
+                                "Task,Time Spent (hours)\n" +
+                                tasks.map(task => `${task.name},${(task.timeSpent / 3600).toFixed(2)}`).join("\n");
+                            const encodedUri = encodeURI(csvContent);
+                            const link = document.createElement("a");
+                            link.setAttribute("href", encodedUri);
+                            link.setAttribute("download", "time_tracking_data.csv");
+                            document.body.appendChild(link);
+                            link.click();
+                        }
+                
+                        // Export Data as PDF
+                        function exportTimeDataPDF() {
+                            const { jsPDF } = window.jspdf;
+                            const doc = new jsPDF();
+                            doc.text("Time Tracking Summary", 10, 10);
+                            tasks.forEach((task, index) => {
+                                doc.text(`${task.name}: ${(task.timeSpent / 3600).toFixed(2)} hours`, 10, 20 + (index * 10));
+                            });
+                            doc.save('time_tracking_summary.pdf');
+                        }
+                
+                        // Calendar Integration (Simulated)
+                        function syncWithGoogleCalendar() {
+                            alert('Syncing with Google Calendar... (Simulated)');
+                        }
+                
+                        function syncWithOutlook() {
+                            alert('Syncing with Outlook... (Simulated)');
+                        }
+                
+                        // Save Data to LocalStorage
+                        function saveTasks() {
+                            localStorage.setItem('tasks', JSON.stringify(tasks));
+                        }
+                
+                        // Initial Render
+                        renderTasks();
+                        updateTimeSummary();
+                        updateChart();
+                
+                        // Update Task Time Every Second
+                        setInterval(() => {
+                            if (activeTaskId !== null) {
+                                const task = tasks.find(task => task.id === activeTaskId);
+                                if (task) {
+                                    task.timeSpent++;
+                                    saveTasks();
+                                    renderTasks();
+                                    updateTimeSummary();
+                                    updateChart();
+                                }
+                            }
+                        }, 1000);
+                    </script>
+                </body>
+                </html>
+            </div>
+            <div class="tool-card">
+                <h2 class="tool-title">Password Generator</h2>
+                <!-- Password generator HTML from previous answer -->
+                <div class="tool-card">
+                    <h2 class="tool-title">Automated Resume & Cover Letter Generator</h2>
+                    <div class="resume-generator-container">
+                        <!-- User Input Form -->
+                        <div class="input-form">
+                            <h3>Enter Your Details</h3>
+                            <input type="text" id="fullName" placeholder="Full Name">
+                            <input type="text" id="jobTitle" placeholder="Desired Job Title">
+                            <textarea id="skills" placeholder="Skills (comma-separated)"></textarea>
+                            <textarea id="experience" placeholder="Work Experience (one per line)"></textarea>
+                            <textarea id="education" placeholder="Education (one per line)"></textarea>
+                            <input type="text" id="companyName" placeholder="Company Name">
+                            <textarea id="jobDescription" placeholder="Paste Job Description Here"></textarea>
+                            <button onclick="generateDocuments()">Generate Resume & Cover Letter</button>
+                            <button onclick="resetForm()">Reset Form</button>
+                            <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx" style="margin-top: 10px;">
+                            <button onclick="uploadResume()">Upload Resume</button>
+                        </div>
+                
+                        <!-- Generated Documents -->
+                        <div class="output">
+                            <div class="tabs">
+                                <button class="tab-button active" onclick="switchTab('resume')">Resume</button>
+                                <button class="tab-button" onclick="switchTab('coverLetter')">Cover Letter</button>
+                            </div>
+                            <div class="document-output">
+                                <div id="resumeOutput" class="document active"></div>
+                                <div id="coverLetterOutput" class="document"></div>
+                            </div>
+                            <button onclick="downloadDocuments('pdf')" class="download-button">Download as PDF</button>
+                            <button onclick="downloadDocuments('docx')" class="download-button">Download as Word</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Generate Resume and Cover Letter
+                    function generateDocuments() {
+                        const fullName = document.getElementById('fullName').value.trim();
+                        const jobTitle = document.getElementById('jobTitle').value.trim();
+                        const skills = document.getElementById('skills').value.trim().split(',').map(s => s.trim());
+                        const experience = document.getElementById('experience').value.trim().split('\n').map(e => e.trim());
+                        const education = document.getElementById('education').value.trim().split('\n').map(e => e.trim());
+                        const companyName = document.getElementById('companyName').value.trim();
+                        const jobDescription = document.getElementById('jobDescription').value.trim();
+                
+                        if (!fullName || !jobTitle || !companyName || !jobDescription) {
+                            alert('Please fill in all required fields.');
+                            return;
+                        }
+                
+                        // Generate Resume
+                        const resume = `
+                            <h2>${fullName}</h2>
+                            <h3>${jobTitle}</h3>
+                            <hr>
+                            <h4>Skills</h4>
+                            <ul>${skills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                            <h4>Work Experience</h4>
+                            <ul>${experience.map(exp => `<li>${exp}</li>`).join('')}</ul>
+                            <h4>Education</h4>
+                            <ul>${education.map(edu => `<li>${edu}</li>`).join('')}</ul>
+                        `;
+                        document.getElementById('resumeOutput').innerHTML = resume;
+                
+                        // Generate Cover Letter
+                        const coverLetter = `
+                            <p>Dear Hiring Manager,</p>
+                            <p>I am excited to apply for the ${jobTitle} position at ${companyName}. With my background in ${skills.join(', ')}, I am confident in my ability to contribute effectively to your team.</p>
+                            <p>In my previous roles, I have:</p>
+                            <ul>${experience.map(exp => `<li>${exp}</li>`).join('')}</ul>
+                            <p>I am particularly drawn to this opportunity because ${getRelevantSkillMatch(skills, jobDescription)}.</p>
+                            <p>Thank you for considering my application. I look forward to the possibility of discussing this exciting opportunity with you.</p>
+                            <p>Sincerely,</p>
+                            <p>${fullName}</p>
+                        `;
+                        document.getElementById('coverLetterOutput').innerHTML = coverLetter;
+                    }
+                
+                    // Match Skills to Job Description
+                    function getRelevantSkillMatch(skills, jobDescription) {
+                        const matchedSkills = skills.filter(skill => jobDescription.toLowerCase().includes(skill.toLowerCase()));
+                        if (matchedSkills.length > 0) {
+                            return `my experience in ${matchedSkills.join(', ')} aligns closely with your requirements`;
+                        }
+                        return 'I am eager to bring my skills and experience to your team';
+                    }
+                
+                    // Switch Between Resume and Cover Letter
+                    function switchTab(tabName) {
+                        document.querySelectorAll('.document').forEach(doc => doc.classList.remove('active'));
+                        document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+                        document.getElementById(`${tabName}Output`).classList.add('active');
+                        document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+                    }
+                
+                    // Download Documents
+                    function downloadDocuments(format) {
+                        const resumeContent = document.getElementById('resumeOutput').innerText;
+                        const coverLetterContent = document.getElementById('coverLetterOutput').innerText;
+                
+                        if (format === 'pdf') {
+                            downloadPDF(resumeContent, 'resume.pdf');
+                            downloadPDF(coverLetterContent, 'cover-letter.pdf');
+                        } else if (format === 'docx') {
+                            downloadDocx(resumeContent, 'resume.docx');
+                            downloadDocx(coverLetterContent, 'cover-letter.docx');
+                        }
+                    }
+                
+                    // Download as PDF
+                    function downloadPDF(content, filename) {
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF();
+                        doc.text(content, 10, 10);
+                        doc.save(filename);
+                    }
+                
+                    // Download as Word
+                    function downloadDocx(content, filename) {
+                        const doc = new Document();
+                        doc.addParagraph(content);
+                        const packer = new Packer();
+                        packer.toBlob(doc).then(blob => {
+                            const link = document.createElement('a');
+                            link.href = URL.createObjectURL(blob);
+                            link.download = filename;
+                            link.click();
+                        });
+                    }
+                
+                    // Upload Resume
+                    function uploadResume() {
+                        const fileInput = document.getElementById('resumeUpload');
+                        const file = fileInput.files[0];
+                        if (file) {
+                            alert(`Resume "${file.name}" uploaded successfully!`);
+                            // You can add additional logic here to handle the uploaded file
+                        } else {
+                            alert('Please select a file to upload.');
+                        }
+                    }
+                
+                    // Reset Form
+                    function resetForm() {
+                        document.getElementById('fullName').value = '';
+                        document.getElementById('jobTitle').value = '';
+                        document.getElementById('skills').value = '';
+                        document.getElementById('experience').value = '';
+                        document.getElementById('education').value = '';
+                        document.getElementById('companyName').value = '';
+                        document.getElementById('jobDescription').value = '';
+                        document.getElementById('resumeOutput').innerHTML = '';
+                        document.getElementById('coverLetterOutput').innerHTML = '';
+                        document.getElementById('resumeUpload').value = '';
+                    }
+                </script>
+                
+                <!-- Include required libraries -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.28.0/docxtemplater.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.0/pizzip.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+            </div>
+            <!-- Repeat for all other tools -->
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="ad">
+                <h3>Amsterdam Hosting</h3>
+                <p>Premium Cloud Solutions</p>
+            </div>
+            <div class="ad" style="animation-delay: 0.5s;">
+                <h3>Mineral VPN</h3>
+                <p>Secure Your Connection</p>
+            </div>
+            <div class="ad" style="animation-delay: 1s;">
+                <h3>Advertise Here</h3>
+                <p>Contact for details</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#tools">All Tools</a></li>
+                    <li><a href="#premium">Premium Features</a></li>
+                    <li><a href="#api">Developer API</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="#support">Support</a></li>
+                    <li><a href="#contact">Contact Form</a></li>
+                    <li><a href="#partners">Partnerships</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.tool-card').forEach((card) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
